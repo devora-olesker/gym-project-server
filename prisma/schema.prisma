@@ -10,4 +10,81 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
- 
+
+//******************models*******************
+model Goals {
+  id       Int               @id @default(autoincrement())
+  name     String            @unique
+  machines MachinePurposes[]
+  workouts WorkoutGoals[]
+}
+
+model ExersizeMachines {
+  id               Int                @id @default(autoincrement())
+  name             String             @unique
+  pic              String             @unique
+  numUnits         Int
+  maxAge           Int
+  maxWeight        Int
+  difficultyLevels DifficultyLevels[]
+  machinePurposes  MachinePurposes[]
+}
+
+model DifficultyLevels {
+  id              Int                  @id @default(autoincrement())
+  numLevel        Int                  @default(1)
+  workoutLength   Int
+  Instructions    String
+  exersizeMachine ExersizeMachines     @relation(fields: [machineId], references: [id])
+  machineId       Int
+  workouts        MachinesPerWorkout[]
+}
+
+model MachinePurposes {
+  id         Int              @id @default(autoincrement())
+  machines   ExersizeMachines @relation(fields: [machinesId], references: [id])
+  machinesId Int
+  goal       Goals            @relation(fields: [goalId], references: [id])
+  goalId     Int
+}
+
+model Users {
+  id          String     @id @unique
+  password    String     @unique
+  firstName   String
+  lastName    String
+  email       String?
+  phone       String?
+  dateOfBirth DateTime
+  workouts    Workouts[]
+}
+
+model Workouts {
+  id            Int                  @id @default(autoincrement())
+  date          DateTime
+  time          DateTime
+  diffacalty    Int
+  workoutLength Int
+  users         Users                @relation(fields: [userId], references: [id])
+  userId        String
+  goals         WorkoutGoals[]
+  machines      MachinesPerWorkout[]
+}
+
+model WorkoutGoals {
+  id            Int      @id @default(autoincrement())
+  priorityLevel Int
+  workout       Workouts @relation(fields: [workoutId], references: [id])
+  workoutId     Int
+  goal          Goals    @relation(fields: [goalId], references: [id])
+  goalId        Int
+}
+
+model MachinesPerWorkout {
+  id                  Int              @id @default(autoincrement())
+  SerialNumber        Int              @unique
+  workout             Workouts         @relation(fields: [workoutId], references: [id])
+  workoutId           Int
+  machineDifficulty   DifficultyLevels @relation(fields: [machineDifficultyId], references: [id])
+  machineDifficultyId Int
+}

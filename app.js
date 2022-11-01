@@ -20,7 +20,7 @@ app.use(routers)
 
 
 
-const port=env('PORT')
+const port=process.env.PORT || 1234
 //הרצה
 app.listen(port, async() => {
     console.log(`I'm running on port ${port}`);

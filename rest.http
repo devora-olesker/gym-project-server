@@ -1,0 +1,6 @@
+# http://localhost:1234/api/machiensController/getAllMachiens
+
+# http://localhost:1234/api/usersController/getUserById/3250040341
+
+
+http://localhost:1234/api/usersController/logIn/325004034/pob2534

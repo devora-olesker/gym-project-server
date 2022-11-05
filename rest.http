@@ -25,7 +25,21 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:1234/api/usersController/deleteUser/011959831
+DELETE http://localhost:1234/api/usersController/deleteUser/011959830
+
+###
+PATCh http://localhost:1234/api/usersController/updateUser/011959830 
+Content-Type: application/json
+
+{
+  "id": "011959830",
+  "password": "8520",
+  "firstName": "Shira",
+  "lastName": "Levi",
+  "email":"" ,
+  "phone": "0587480452",
+  "dateOfBirth": "2000-12-04T00:00:00.000Z"
+}
 
 
 

@@ -129,12 +129,32 @@ router.delete('/deleteUser/:id', async (req, res) => {
         const users = await prisma.users.findMany({})
         res.status(200)
         res.send(users)
-        
+
 
     }
     catch (error) {
         res.status(400)
-        console.log('Can not get data from db... '+ error)
+        console.log('Can not get data from db... ' + error)
+        res.send(error)
+    }
+})
+
+//gets a id and an updated user objet, and updates the user with that id
+//returns the updated user
+router.patch('/updateUser/:id', async (req, res)=> {
+    try {
+        const updatedUser=await prisma.users.update({
+            where:{
+                id:req.params.id
+            },
+            data: req.body
+        })
+        res.status(200)
+        res.send(updatedUser)
+
+    } catch(error) {
+        res.status(400)
+        console.log('Can not get data from db... ' + error)
         res.send(error)
     }
 })

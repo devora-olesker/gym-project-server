@@ -31,9 +31,9 @@ router.get('/getUserById/:id', async (req, res) => {
 
     }
     catch (error) {
-        res.status(404)
-        console.log('Can not get data from db...')
-        res.end()
+        res.status(400)
+        console.log('Can not get data from db...'+ error)
+        res.send('Can not get data from db...'+ error)
     }
 })
 
@@ -65,9 +65,9 @@ router.get('/logIn/:id/:password', async (req, res) => {
         }
     }
     catch (error) {
-        res.status(404)
-        console.log('Can not get data from db...')
-        res.end()
+        res.status(400)
+        console.log('Can not get data from db...'+ error)
+        res.send('Can not get data from db...'+ error)
     }
 })
 
@@ -84,10 +84,9 @@ router.get('/doesExists/:id', async (req, res) => {
 
         }
     } catch (error) {
-        res.status(404)
-        res.statusMessage = 'Can not get data from db...'
-        console.log('Can not get data from db...' + error)
-        res.end()
+        res.status(400)
+        console.log('Can not get data from db...'+ error)
+        res.send('Can not get data from db...'+ error)
     }
 })
 
@@ -111,10 +110,9 @@ router.post('/addNewUser', async (req, res) => {
         }
 
     } catch (error) {
-        res.status(404)
-        res.statusMessage = 'Can not get data from db...'
-        console.log('Can not get data from db...' + error)
-        res.end()
+        res.status(400)
+        console.log('Can not get data from db...'+ error)
+        res.send('Can not get data from db...'+ error)
     }
 })
 

@@ -8,11 +8,14 @@ GET http://localhost:1234/api/usersController/getUserById/325004034
 GET http://localhost:1234/api/usersController/logIn/325004034/pob2534
 
 ###
-POST http://localhost:1234/api/usersController/addNewUser/ HTTP/1.1
+GET http://localhost:1234/api/usersController/doesExists/325004054
+###
+
+POST http://localhost:1234/api/usersController/addNewUser HTTP/1.1
 Content-Type: application/json
 
 {
-  "id": "325004034",
+  "id": "011959830",
   "password": "8520",
   "firstName": "Shira",
   "lastName": "Levi",
@@ -20,6 +23,10 @@ Content-Type: application/json
   "phone": "0587480452",
   "dateOfBirth": "2000-12-04T00:00:00.000Z"
 }
+
+###
+DELETE http://localhost:1234/api/usersController/deleteUser/011959831
+
 
 
 

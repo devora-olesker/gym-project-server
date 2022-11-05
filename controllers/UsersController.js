@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 const { PrismaClient } = require('@prisma/client')
 const bodyParser = require("body-parser")
+const e = require("express")
 const prisma = new PrismaClient()
 
 // create application/json parser
@@ -70,6 +71,26 @@ router.get('/logIn/:id/:password', async (req, res) => {
     }
 })
 
+//gets an id and checks if the user allready exiests
+router.get('/doesExists/:id', async (req, res) => {
+    try {
+        if (await prisma.users.findUnique({ where: { id: req.params.id } })) {
+            res.status(200)
+            res.send(true)
+        }
+        else {
+            res.status(200)
+            res.send(false)
+
+        }
+    } catch (error) {
+        res.status(404)
+        res.statusMessage = 'Can not get data from db...'
+        console.log('Can not get data from db...' + error)
+        res.end()
+    }
+})
+
 //gets a user object in the body and checks if the user exists. 
 //if it allredy exiests, it will return a message. if not it will add the new user to the db
 router.post('/addNewUser', async (req, res) => {
@@ -94,6 +115,27 @@ router.post('/addNewUser', async (req, res) => {
         res.statusMessage = 'Can not get data from db...'
         console.log('Can not get data from db...' + error)
         res.end()
+    }
+})
+
+//gets an id and deletes the user with that id. returns the new list of users
+router.delete('/deleteUser/:id', async (req, res) => {
+    try {
+        await prisma.users.delete({
+            where: {
+                id: req.params.id
+            }
+        })
+        const users = await prisma.users.findMany({})
+        res.status(200)
+        res.send(users)
+        
+
+    }
+    catch (error) {
+        res.status(400)
+        console.log('Can not get data from db... '+ error)
+        res.send(error)
     }
 })
 

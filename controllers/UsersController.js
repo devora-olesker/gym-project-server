@@ -6,7 +6,7 @@ const prisma = new PrismaClient()
 
 // create application/json parser
 var jsonParser = bodyParser.json()
- 
+
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
@@ -72,31 +72,19 @@ router.get('/logIn/:id/:password', async (req, res) => {
 
 //gets a user object in the body and checks if the user exists. 
 //if it allredy exiests, it will return a message. if not it will add the new user to the db
-router.post('/addNewUser/:id', async (req, res) => {
+router.post('/addNewUser', async (req, res) => {
     try {
-        // const { id, password, firstName, lastName, email, phone, dateOfBirth } = await req.body
-        // const newUser = req.body
-        // console.log(newUser.id);
+        const newUser = await req.body
         //check if user id allready exiests
-        const user = await prisma.users.findUnique({ where: { id: req.params.id } })
-        if (user) {
+        if (await prisma.users.findUnique({ where: { id: newUser.id } })) {
             res.status(400)
             res.send('User allready exiests')
         }
         //if the user dosent exiest, it will be aded to the db
         else {
-            console.log('jjj');
             const user = await prisma.users.create({
-                 data: {
-                    id:req.body.id,
-                    password:req.body.password,
-                    firstName: req.body.firstName,
-                    lastName: req.body.lastName,
-                    email:req.body.email,
-                    phone:req.body.phone,
-                    dateOfBirth:req.body.dateOfBirth,
-                 }
-                })
+                data: newUser
+            })
             res.status(200)
             res.send(user)
         }
@@ -104,7 +92,7 @@ router.post('/addNewUser/:id', async (req, res) => {
     } catch (error) {
         res.status(404)
         res.statusMessage = 'Can not get data from db...'
-        console.log('Can not get data from db...'+error)
+        console.log('Can not get data from db...' + error)
         res.end()
     }
 })

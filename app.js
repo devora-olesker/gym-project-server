@@ -17,9 +17,6 @@ app.use(cors())
 //הפעלת הניתוב הבסיסי
 app.use(routers)
 
-
-
-
 const port=process.env.PORT || 1234
 //הרצה
 app.listen(port, async() => {

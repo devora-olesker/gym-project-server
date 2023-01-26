@@ -11,7 +11,20 @@ var jsonParser = bodyParser.json()
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
+//get all users
+router.get("/getAllusers", async (req, res) => {
+    try {
+        const users = await prisma.users.findMany({})
 
+        res.status = 200
+        res.send(users)
+    }
+    catch (error) {
+        res.status = 404
+        console.log('Can not get data from db...')
+        res.end()
+    }
+})
 //gets an id and returns the matching user
 router.get('/getUserById/:id', async (req, res) => {
     try {
@@ -32,8 +45,8 @@ router.get('/getUserById/:id', async (req, res) => {
     }
     catch (error) {
         res.status(400)
-        console.log('Can not get data from db...'+ error)
-        res.send('Can not get data from db...'+ error)
+        console.log('Can not get data from db...' + error)
+        res.send('Can not get data from db...' + error)
     }
 })
 
@@ -66,8 +79,8 @@ router.get('/logIn/:id/:password', async (req, res) => {
     }
     catch (error) {
         res.status(400)
-        console.log('Can not get data from db...'+ error)
-        res.send('Can not get data from db...'+ error)
+        console.log('Can not get data from db...' + error)
+        res.send('Can not get data from db...' + error)
     }
 })
 
@@ -85,8 +98,8 @@ router.get('/doesExists/:id', async (req, res) => {
         }
     } catch (error) {
         res.status(400)
-        console.log('Can not get data from db...'+ error)
-        res.send('Can not get data from db...'+ error)
+        console.log('Can not get data from db...' + error)
+        res.send('Can not get data from db...' + error)
     }
 })
 
@@ -96,7 +109,7 @@ router.post('/addNewUser', async (req, res) => {
     try {
         const newUser = await req.body
         //check if user id allready exiests
-        if (await prisma.users.findUnique({ where: { id: newUser.id } })) {
+        if (await prisma.users.findUnique({ where: { id: newUser?.id } })) {
             res.status(400)
             res.send('User allready exiests')
         }
@@ -111,8 +124,8 @@ router.post('/addNewUser', async (req, res) => {
 
     } catch (error) {
         res.status(400)
-        console.log('Can not get data from db...'+ error)
-        res.send('Can not get data from db...'+ error)
+        console.log('Can not get data from db...' + error)
+        res.send('Can not get data from db...' + error)
     }
 })
 
@@ -139,18 +152,18 @@ router.delete('/deleteUser/:id', async (req, res) => {
 
 //gets a id and an updated user objet, and updates the user with that id
 //returns the updated user
-router.patch('/updateUser/:id', async (req, res)=> {
+router.patch('/updateUser/:id', async (req, res) => {
     try {
-        const updatedUser=await prisma.users.update({
-            where:{
-                id:req.params.id
+        const updatedUser = await prisma.users.update({
+            where: {
+                id: req.params.id
             },
             data: req.body
         })
         res.status(200)
         res.send(updatedUser)
 
-    } catch(error) {
+    } catch (error) {
         res.status(400)
         console.log('Can not get data from db... ' + error)
         res.send(error)

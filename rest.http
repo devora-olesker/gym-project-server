@@ -1,4 +1,4 @@
-GET  http://localhost:1234/api/machiensController/getAllMachiens
+GET  http://localhost:1234/api/machiensController/getAllMachines
 ###
 
 GET http://localhost:1234/api/usersController/getUserById/325004034

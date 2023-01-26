@@ -46,7 +46,7 @@ GET  http://localhost:1234/api/machinesController/getAllMachines
 GET http://localhost:1234/api/machinesController/getMachineById/14
 ###
 
-DELETE http://localhost:1234/api/machinesController/deleteMachine/14
+DELETE http://localhost:1234/api/machinesController/deleteMachine/15
 
 ###
 

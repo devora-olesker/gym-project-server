@@ -96,7 +96,7 @@ router.post('/addNewUser', async (req, res) => {
     try {
         const newUser = await req.body
         //check if user id allready exiests
-        if (await prisma.users.findUnique({ where: { id: newUser.id } })) {
+        if (await prisma.users.findUnique({ where: { id: newUser?.id } })) {
             res.status(400)
             res.send('User allready exiests')
         }

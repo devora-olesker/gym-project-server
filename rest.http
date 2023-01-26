@@ -40,6 +40,30 @@ Content-Type: application/json
   "phone": "0587480452",
   "dateOfBirth": "2000-12-04T00:00:00.000Z"
 }
+###
+GET  http://localhost:1234/api/machinesController/getAllMachines
+###
+GET http://localhost:1234/api/machinesController/getMachineById/9
+###
+
+DELETE http://localhost:1234/api/machineController/deleteMachine/
+
+###
+
+GET  http://localhost:1234/api/workoutscontroller/getAllWorkouts
+###
+GET  http://localhost:1234/api/workoutsController/getworkoutById/1
+
+###
+DELETE http://localhost:1234/api/workoutsController/deleteworkout/
+###
+
+
+
+
+
+
+
 
 ###
 PATCH http://localhost:1234/api/machiensController/updateMachine/1 

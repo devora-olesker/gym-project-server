@@ -30,8 +30,7 @@ Content-Type: application/json
 DELETE http://localhost:1234/api/usersController/deleteUser/011959830
 
 ###
-PATCh http://localhost:1234/api/usersController/updateUser/011959830 
-
+PATCH http://localhost:1234/api/usersController/updateUser/011959830 
 Content-Type: application/json
 
 {
@@ -68,7 +67,32 @@ DELETE http://localhost:1234/api/workoutsController/deleteworkout/
 
 
 
+###
+PATCH http://localhost:1234/api/machiensController/updateMachine/1 
+Content-Type: application/json
 
+{
+  
+  "name": "הליכון",
+  "pic": "הליכון.jpg",
+  "numUnits": 10,
+  "maxAge": 120,
+  "maxWeight": 250
+}
+###
 
+GET http://localhost:1234/api/machiensController/getMachinesByWorkoutGoal/1
 
+###
+POST http://localhost:1234/api/machiensController/addNewMachine HTTP/1.1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "הליכון",
+  "pic": "הליכון.jpg",
+  "numUnits": 10,
+  "maxAge": 120,
+  "maxWeight": 250
+}
 

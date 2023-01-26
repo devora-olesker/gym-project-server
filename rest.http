@@ -1,4 +1,4 @@
-GET  http://localhost:1234/api/machiensController/getAllMachines
+GET  http://localhost:1234/api/machinesController/getAllMachines
 ###
 
 GET http://localhost:1234/api/usersController/getUserById/325004034
@@ -43,10 +43,10 @@ Content-Type: application/json
 ###
 GET  http://localhost:1234/api/machinesController/getAllMachines
 ###
-GET http://localhost:1234/api/machinesController/getMachineById/9
+GET http://localhost:1234/api/machinesController/getMachineById/14
 ###
 
-DELETE http://localhost:1234/api/machineController/deleteMachine/
+DELETE http://localhost:1234/api/machinesController/deleteMachine/14
 
 ###
 
@@ -58,15 +58,7 @@ GET  http://localhost:1234/api/workoutsController/getworkoutById/1
 DELETE http://localhost:1234/api/workoutsController/deleteworkout/
 ###
 
-
-
-
-
-
-
-
-###
-PATCH http://localhost:1234/api/machiensController/updateMachine/1 
+PATCH http://localhost:1234/api/machinesController/updateMachine/1 
 Content-Type: application/json
 
 {
@@ -79,10 +71,10 @@ Content-Type: application/json
 }
 ###
 
-GET http://localhost:1234/api/machiensController/getMachinesByWorkoutGoal/1
+GET http://localhost:1234/api/machinesController/getMachinesByWorkoutGoal/1
 
 ###
-POST http://localhost:1234/api/machiensController/addNewMachine HTTP/1.1
+POST http://localhost:1234/api/machinesController/addNewMachine HTTP/1.1
 Content-Type: application/json
 
 {

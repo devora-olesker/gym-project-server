@@ -50,7 +50,7 @@ router.delete('/deleteworkout/:id', async (req, res) => {
     try {
         await prisma.workouts.delete({
             where: {
-                id: req.params.id
+                id: parseInt(req.params.id)
             }
         })
         const workouts = await prisma.workouts.findMany({})
@@ -65,5 +65,50 @@ router.delete('/deleteworkout/:id', async (req, res) => {
         res.send(error)
     }
 })
+
+//gets an user id and returns all user workouts 
+router.get('/getWorksoutrByUserId/:id', async (req, res) => {
+    try {
+        const workouts = await prisma.workouts.findMany({
+            where: {
+                userId: req.params.id
+            }
+        })
+        if (workouts) {
+            res.status = 200
+            res.send(workouts)
+        }
+        else {
+            res.status(400)
+            res.send('User does not exist')
+        }
+
+    }
+    catch (error) {
+        res.status(400)
+        console.log('Can not get data from db...' + error)
+        res.send('Can not get data from db...' + error)
+    }
+})
+
+//gets a id and an updated workout  objet, and updates the workout  with that id
+//returns the updated workout
+router.patch('/updateWorkout/:id', async (req, res) => {
+    try {
+        const updateWorkout = await prisma.workouts.update({
+            where: {
+                id: parseInt(req.params.id)            },
+            data: req.body
+        })
+        res.status(200)
+        res.send(updateWorkout)
+
+    } catch (error) {
+        res.status(400)
+        console.log('Can not get data from db... ' + error)
+        res.send(error)
+    }
+})
+
 
 module.exports = router

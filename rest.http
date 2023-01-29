@@ -1,5 +1,4 @@
-GET  http://localhost:1234/api/machinesController/getAllMachines
-###
+
 
 GET http://localhost:1234/api/usersController/getUserById/325004034
 
@@ -43,7 +42,9 @@ Content-Type: application/json
 ###
 GET  http://localhost:1234/api/machinesController/getAllMachines
 ###
-GET http://localhost:1234/api/machinesController/getMachineById/14
+GET  http://localhost:1234/api/machinesController/getAllMachines
+###
+GET http://localhost:1234/api/machinesController/getMachineById/15
 ###
 
 DELETE http://localhost:1234/api/machinesController/deleteMachine/14
@@ -55,20 +56,7 @@ GET  http://localhost:1234/api/workoutscontroller/getAllWorkouts
 GET  http://localhost:1234/api/workoutsController/getworkoutById/1
 
 ###
-DELETE http://localhost:1234/api/workoutsController/deleteworkout/
-###
-
-PATCH http://localhost:1234/api/machinesController/updateMachine/1 
-Content-Type: application/json
-
-{
-  
-  "name": "הליכון",
-  "pic": "הליכון.jpg",
-  "numUnits": 10,
-  "maxAge": 120,
-  "maxWeight": 250
-}
+DELETE http://localhost:1234/api/workoutsController/deleteworkout/1
 ###
 
 GET http://localhost:1234/api/machinesController/getMachinesByWorkoutGoal/1
@@ -85,3 +73,21 @@ Content-Type: application/json
   "maxWeight": 230
 }
 
+###
+GET http://localhost:1234/api/workoutsController/getWorksoutrByUserId/212907737
+###
+
+PATCH http://localhost:1234/api/workoutsController/updateWorkout/2
+Content-Type: application/json
+
+
+{
+    "id": 2,
+    "date": "2012-01-01T00:00:00.000Z",
+    "time": "2012-01-01T00:00:00.000Z",
+    "diffacalty": 2,
+    "workoutLength": 20,
+    "userId": "212907737"
+  
+
+}
